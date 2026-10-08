@@ -50,6 +50,8 @@ function render() {
   list.replaceChildren();
   for (let i = 0; i < visible.length; i++) {
     const task = visible[i];
+    const isHidden = currentFilter !== "all" && (currentFilter === "done" ? !task.done : task.done);
+    if (isHidden) continue;
     const li = document.createElement("li");
     li.className = "task";
     if (task.done) {
