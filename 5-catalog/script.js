@@ -9,7 +9,7 @@ const products = [
   { id: 8, name: "JBL Flip", price: 129, category: "audio" },
 ];
 
-const searchInput = document.getElementById("search");
+const searchInput = document.getElementById("search")
 const categorySelect = document.getElementById("category");
 const sortSelect = document.getElementById("sort");
 const resetBtn = document.getElementById("reset");
@@ -20,12 +20,12 @@ render();
 
 function getFiltered() {
   let result = products;
-  const search = searchInput.value;
+  const search = searchInput.value.trim().toLowerCase();
   const category = categorySelect.value;
   const sort = sortSelect.value;
 
   if (search) {
-    result = result.filter((p) => p.name === search);
+    result = result.filter((p) => p.name.toLowerCase() === search);
   }
 
   if (category !== "all") {
@@ -38,6 +38,7 @@ function getFiltered() {
     result.sort((a, b) => a.price - b.price);
   }
 
+  console.log(result);
   return result;
 }
 
