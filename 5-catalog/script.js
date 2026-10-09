@@ -16,8 +16,6 @@ const resetBtn = document.getElementById("reset");
 const grid = document.getElementById("grid");
 const countEl = document.getElementById("count");
 
-render();
-
 function getFiltered() {
   let result = [...products];
   const search = searchInput.value.trim().toLowerCase();
@@ -41,6 +39,13 @@ function getFiltered() {
   return result;
 }
 
+function resetFilters() {
+  searchInput.value = "";
+  categorySelect.value = "all";
+  sortSelect.value = "default";
+  render();
+}
+
 function render() {
   grid.replaceChildren();
   const items = getFiltered();
@@ -57,6 +62,6 @@ searchInput.addEventListener("input", render);
 categorySelect.addEventListener("change", render);
 sortSelect.addEventListener("change", render);
 
-resetBtn.addEventListener("click", () => {
-  searchInput.value = "";
-});
+resetBtn.addEventListener("click", () => resetFilters());
+
+render();
